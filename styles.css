@@ -1,0 +1,393 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #111111;
+    color: beige;
+    font-family: "Poppins", sans-serif;
+}
+
+.unselectable{
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.header {
+    margin-top: 10px;
+    height: 30vh;
+    max-height: max-content;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    background-color: #111111;
+}
+
+#tasks {
+    color: #111111;
+    border: none;
+    background-color: beige;
+    border-radius: 15px;
+}
+
+#tasks {
+    text-transform: capitalize;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    line-height: 30px;
+    text-align: center;
+}
+
+#tasks ul li {
+    list-style: none;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+}
+
+#todos {
+    display: flex;
+    flex-direction: column;
+    letter-spacing: 1px;
+    background-color: beige;
+    border-radius: 15px;
+    margin-right: 10px;
+}
+
+#todos ul {
+    display: flex;
+    justify-content: space-between;
+}
+
+#todos ul li {
+    color: #111111;
+    list-style: none;
+    margin-left: 5px;
+    text-align: left;
+    font-size: 0.9rem;
+}
+
+#checkbox {
+    color: black;
+}
+
+.li-div {
+    margin-left: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.btn-group button {
+    margin-right: 10px;
+    padding: 5px;
+    background-color: transparent;
+    border: none;
+    color: #111111;
+    cursor: pointer;
+}
+
+#todo {
+    margin: 10px 5px;
+    background-color: #111111;
+    border: none;
+    color: beige;
+    padding: 8px;
+    border-radius: 15px;
+}
+
+#todo:focus {
+    outline: none;
+}
+
+#todo:focus::placeholder {
+    color: transparent;
+}
+
+#todo::placeholder {
+    color: beige;
+    font-weight: bold;
+}
+
+#todo[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.upper {
+    width: 120px;
+    display: flex;
+    flex-direction: row;
+    background-color: #111111;
+    color: beige;
+    align-items: center;
+    justify-content: space-around;
+    border-radius: 5px;
+    padding: 5px 0;
+}
+
+.time-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.display {
+    text-align: center;
+}
+
+.display #time {
+    font-size: 1.25rem;
+    margin-bottom: 0;
+}
+
+.display p {
+    font-size: 0.7rem;
+}
+
+.arrows {
+    display: flex;
+    flex-direction: column;
+    font-size: 1rem;
+}
+
+.arrows #increase {
+    margin-bottom: 5px;
+}
+
+#increase,
+#decrease {
+    cursor: pointer;
+}
+
+#break-msg {
+    margin: 10px;
+    font-size: 0.7rem;
+}
+
+#focus-session {
+    border: none;
+    padding: 8px 10px;
+    border-radius: 5px;
+    background-color: #111111;
+    color: beige;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: beige;
+    border-radius: 15px;
+    color: #111111;
+    margin-left: 10px;
+}
+
+.countdown-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.countdown-circle {
+    width: 130px;
+    height: 130px; 
+    border-radius: 50%;
+    border: 2px dashed #111111;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px; 
+}
+
+#countdown {
+    font-size: 1.25rem;
+    letter-spacing: 1px;
+}
+
+.controls button {
+    border: none;
+    margin: 4px;
+    padding: 8px 12px;
+    border-radius: 40%;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    background-color: beige;
+    color: #111111;
+}
+
+.controls button:focus {
+    outline: none;
+}
+
+.controls button:hover {
+    background-color: #111111;
+    color: beige;
+}
+
+.hide {
+    display: none;
+}
+
+#lines {
+    position: fixed;
+    bottom: 10px;
+    left: 0;
+    width: 100%;
+    font-size: 1.25rem;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+#clock {
+    font-size: 3.5rem;
+    font-weight: bold;
+    font-family: "Orbitron", sans-serif;
+}
+
+.password-generator {
+    font-size: 0.7rem;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+#pg-msg {
+    background-color: beige;
+    color: #111111;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.pg-bg {
+    background-color: beige;
+    color: #111111;
+    margin-top: 10px;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+#passwordDisplay {
+    padding: 5px;
+    border: none;
+    border-radius: 10px;
+    width: 160px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: beige;
+    text-align: center;
+    font-size: 1rem;
+}
+
+#passwordDisplay:focus {
+    outline: none;
+}
+
+#copyButton, #generateButton {
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    background-color: beige;
+    color: #111111;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+#copyButton:hover,#generateButton:hover {
+    background-color: #111111;
+    color: beige;
+}
+
+#options {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.option-class {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+#length {
+    margin-top: 5px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: beige;
+    width: 40px;
+    text-align: center;
+    padding: 5px 0;
+    border: none;
+    border-radius: 5px;
+}
+
+#developer {
+    font-size: 0.7rem;
+    margin: 10px;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    text-align: right;
+}
+
+#github, #twitter {
+    color: beige;
+}
+
+.center {
+    position: fixed;
+    top: 50%;
+    text-align: center;
+    width: 100%;
+    font-size: 1rem;
+}
+
+#confetti-btn {
+    margin-top: 10px;
+    padding: 5px 10px;
+    border: none;
+    font-weight: bold;
+    border-radius: 5px;
+    background-color: beige;
+    color: #111111;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+#confetti-btn:hover {
+    scale: 1.1;
+}
+
+#disabled {
+    opacity: 0.5;
+    cursor: default;
+}
+
+#edit-todo {
+    margin-left: 5px;
+    border: none;
+    background-color: transparent;
+    border-radius: 5px;
+    font-family: inherit;
+    font-size: 0.9rem;
+    color: #111111;
+    border-bottom: 1px solid #111111;
+}
+
+#edit-todo:focus {
+    outline: none;
+}

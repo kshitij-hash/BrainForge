@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Focus tab</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="unselectable">
+    <div class="header">
+        <div class="container">
+            <div class="countdown-section hide">
+                <div class="countdown-circle">
+                    <p id="countdown">25:00</p>
+                </div>
+                <div class="controls">
+                    <button id="pause"><i class="fa-solid fa-pause"></i></button>
+                    <button class="hide" id="reset"><i class="fa-solid fa-rotate-left"></i></button>
+                </div>
+            </div>
+            <div class="time-section">
+                <div class="upper">
+                    <div class="display">
+                        <p id="time">25</p>
+                        <p>mins</p>
+                    </div>
+                    <div class="arrows">
+                        <i id="increase" class="fa-solid fa-angle-up"></i>
+                        <i id="decrease" class="fa-solid fa-angle-down"></i>
+                    </div>
+                </div>
+                <p id="break-msg">You'll have no breaks.</p>
+                <button id="focus-session"><i class="fa-solid fa-play"></i> Start Session</button>
+            </div>
+        </div>
+        <div id="tasks">
+            <ul>
+                <li>consistency</li>
+                <li>workout (30 mins)</li>
+                <li>meditation (15 mins)</li>
+                <li>read book (10 pages/day)</li>
+                <li>grayscale & notifications off</li>
+                <li>no phone & music for 6hrs after waking up</li>
+            </ul>
+        </div>
+        <div id="todos">
+            <input type="text" id="todo" placeholder="My todos are... (keep it short)">
+        </div>
+    </div>
+    <div class="center">
+        <p id="question">Did I do enough today?</p>
+        <button id="confetti-btn">Yes</button>
+    </div>
+    <div id="lines">
+        <div id="date" onload="getDate()"></div>
+        <div id="clock" onload="currentTime()"></div>
+    </div>
+    <div class="password-generator">
+        <p id="pg-msg">Password Generator <i class="fa-solid fa-chevron-down"></i></p>
+        <div class="pg-bg hide">
+            <input type="text" id="passwordDisplay" readonly>
+            <button id="copyButton"><i class="fa-regular fa-copy"></i></button>
+            <button id="generateButton"><i class="fa-solid fa-rotate"></i></button>
+            <div id="options">
+                <div class="option-class">
+                    <label for="lowercaseCheckbox">
+                        <input type="checkbox" id="lowercaseCheckbox" checked> (a-z)
+                    </label>
+                    <label for="uppercaseCheckbox">
+                        <input type="checkbox" id="uppercaseCheckbox" checked> (A-Z)
+                    </label>
+                </div>
+                <div class="option-class">
+                    <label for="numbersCheckbox">
+                        <input type="checkbox" id="numbersCheckbox" checked> (0-9)
+                    </label>
+                    <label for="symbolsCheckbox">
+                        <input type="checkbox" id="symbolsCheckbox" checked> (@-$)
+                    </label>
+                </div>
+                <label for="length">
+                    Length: <input type="number" id="length" max="14" min="8" value="8">
+                </label>
+            </div>
+        </div>
+    </div>
+    <div id="developer">
+        <p>Suggestions / Issues? Make a PR here  
+            <a target="_blank" href="https://twitter.com/kshitijHash">
+                <i id="github" class="fa-brands fa-github"></i>
+            </a>
+        </p>
+        <p>Made by Kshitij 
+            <a target="_blank" href="https://twitter.com/kshitijHash">
+                <i id="twitter" class="fa-brands fa-x-twitter"></i>
+            </a>
+        </p>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
