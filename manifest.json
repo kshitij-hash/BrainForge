@@ -1,7 +1,12 @@
 {
     "manifest_version": 3,
-    "name": "Empty New Tab Page",
+    "name": "Focus Tab",
+    "description": "A new tab page that helps you stay focused and productive.",
     "version": "1.0",
+    "icons": {
+        "16": "icons/focus16.png",
+        "128": "icons/focus128.png"
+    },
     "chrome_url_overrides": {
         "newtab": "empty_ntp.html"
     }

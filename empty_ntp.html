@@ -63,41 +63,14 @@
         <div id="date" onload="getDate()"></div>
         <div id="clock" onload="currentTime()"></div>
     </div>
-    <div class="password-generator">
-        <p id="pg-msg">Password Generator <i class="fa-solid fa-chevron-down"></i></p>
-        <div class="pg-bg hide">
-            <input type="text" id="passwordDisplay" readonly>
-            <button id="copyButton"><i class="fa-regular fa-copy"></i></button>
-            <button id="generateButton"><i class="fa-solid fa-rotate"></i></button>
-            <div id="options">
-                <div class="option-class">
-                    <label for="lowercaseCheckbox">
-                        <input type="checkbox" id="lowercaseCheckbox" checked> (a-z)
-                    </label>
-                    <label for="uppercaseCheckbox">
-                        <input type="checkbox" id="uppercaseCheckbox" checked> (A-Z)
-                    </label>
-                </div>
-                <div class="option-class">
-                    <label for="numbersCheckbox">
-                        <input type="checkbox" id="numbersCheckbox" checked> (0-9)
-                    </label>
-                    <label for="symbolsCheckbox">
-                        <input type="checkbox" id="symbolsCheckbox" checked> (@-$)
-                    </label>
-                </div>
-                <label for="length">
-                    Length: <input type="number" id="length" max="14" min="8" value="8">
-                </label>
-            </div>
-        </div>
-    </div>
-    <div id="developer">
+    <div id="issues">
         <p>Suggestions / Issues? Go here 
             <a target="_blank" href="https://github.com/kshitij-hash/productivity-extension">
                 <i id="github" class="fa-brands fa-github"></i>
             </a>
         </p>
+    </div>
+    <div id="developer">
         <p>Made by Kshitij 
             <a target="_blank" href="https://twitter.com/kshitijHash">
                 <i id="twitter" class="fa-brands fa-x-twitter"></i>

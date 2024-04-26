@@ -255,84 +255,12 @@ body {
     font-family: "Orbitron", sans-serif;
 }
 
-.password-generator {
+#issues {
     font-size: 0.7rem;
-    text-align: center;
+    margin: 10px;
     position: fixed;
     bottom: 0;
     left: 0;
-    border-radius: 5px;
-    padding: 10px;
-}
-
-#pg-msg {
-    background-color: beige;
-    color: #111111;
-    padding: 5px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.pg-bg {
-    background-color: beige;
-    color: #111111;
-    margin-top: 10px;
-    border-radius: 10px;
-    padding: 10px;
-}
-
-#passwordDisplay {
-    padding: 5px;
-    border: none;
-    border-radius: 10px;
-    width: 160px;
-    background-color: rgba(0, 0, 0, 0.7);
-    color: beige;
-    text-align: center;
-    font-size: 1rem;
-}
-
-#passwordDisplay:focus {
-    outline: none;
-}
-
-#copyButton, #generateButton {
-    padding: 5px;
-    border: none;
-    border-radius: 5px;
-    background-color: beige;
-    color: #111111;
-    cursor: pointer;
-    transition: background-color 0.2s ease-in-out;
-}
-
-#copyButton:hover,#generateButton:hover {
-    background-color: #111111;
-    color: beige;
-}
-
-#options {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 10px;
-}
-
-.option-class {
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-}
-
-#length {
-    margin-top: 5px;
-    background-color: rgba(0, 0, 0, 0.7);
-    color: beige;
-    width: 40px;
-    text-align: center;
-    padding: 5px 0;
-    border: none;
-    border-radius: 5px;
 }
 
 #developer {
