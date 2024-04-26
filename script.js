@@ -66,6 +66,7 @@ function handleDelete() {
     if(currentTodos < maxTodos) {
         todo.disabled = false;
     }
+    toggleNoTodosMsg();
 }
 
 function handleEdit() {
@@ -131,7 +132,7 @@ todo.addEventListener('keydown', (e) => {
             alert('Todo should be less than 40 characters');
             return
         }
-
+        
         if(currentTodos < maxTodos) {
             let myTodo = {
                 todo: e.target.value,
@@ -174,11 +175,21 @@ todo.addEventListener('keydown', (e) => {
             if(currentTodos === maxTodos) {
                 todo.disabled = true;
             }
+            toggleNoTodosMsg();
         }
     }
 })
 
 const getitem = localStorage.getItem('todoList')
+
+function toggleNoTodosMsg() {
+    let noTodosMsg = document.getElementById('no-todos-msg');
+    if(currentTodos > 0) {
+        noTodosMsg.classList.add('hide');
+    } else {
+        noTodosMsg.classList.remove('hide');
+    }
+}
 
 function checkTimeToRemoveTodos() {
     let time = getTime();
@@ -197,6 +208,7 @@ setInterval(checkTimeToRemoveTodos, 1000);
 if(getitem) {
     todoList = JSON.parse(getitem);
     currentTodos = todoList.length;
+    toggleNoTodosMsg();
 
     todoList.forEach((item) => {
         let ul = document.createElement('ul');

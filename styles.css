@@ -378,16 +378,23 @@ body {
 }
 
 #edit-todo {
+    width: 350px;
     margin-left: 5px;
     border: none;
     background-color: transparent;
     border-radius: 5px;
     font-family: inherit;
     font-size: 0.9rem;
-    color: #111111;
-    border-bottom: 1px solid #111111;
+    color: beige;
+    background-color: #111111;
 }
 
 #edit-todo:focus {
     outline: none;
+}
+
+#no-todos-msg {
+    color: #111111;
+    font-size: 0.8rem;
+    text-align: center;
 }
