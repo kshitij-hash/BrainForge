@@ -296,41 +296,36 @@ function breakMessageUpdate(breaks) {
     }
 }
 
+let breaks = 0;
 function breakCalculator(time) {
-    if(time <= 25) {
-        breakMessageUpdate(0);
-    } else if(time > 25 && time <= 50) {
-        breakMessageUpdate(1);
-    } else if(time > 50 && time <= 95) {
-        breakMessageUpdate(2);
-    } else {
-        breakMessageUpdate(3);
-    }
+    breaks = (time % 25) / 5;
+    breakMessageUpdate(breaks);
 }
 
 arrowUp.addEventListener('click', () => {
-    if(time.innerText >= 110) {
+    if(parseInt(time.innerText)=== 120) {
         return
-    }
-    if(time.innerText < 50) {
+    } 
+    
+    if(parseInt(time.innerText) === 25) {
         time.innerText = parseInt(time.innerText) + 5;
     } else {
-        time.innerText = parseInt(time.innerText) + 15;
+        time.innerText = parseInt(time.innerText) + 30;
     }
-    breakCalculator(time.innerText)
+    breakCalculator(parseInt(time.innerText));
     countdown.innerText = `${time.innerText}:00`
 })
 
 arrowDown.addEventListener('click', () => {
-    if(time.innerText <= 10) {
+    if(parseInt(time.innerText) === 25) {
         return
     }
-    if(time.innerText > 50) {
-        time.innerText = parseInt(time.innerText) - 15;
-    } else {
+    if(parseInt(time.innerText) === 30) {
         time.innerText = parseInt(time.innerText) - 5;
+    } else {
+        time.innerText = parseInt(time.innerText) - 30;
     }
-    breakCalculator(time.innerText)
+    breakCalculator(parseInt(time.innerText))
     countdown.innerText = `${time.innerText}:00`
 })
 
@@ -339,12 +334,12 @@ let countdown = document.getElementById('countdown');
 let pause = document.getElementById('pause');
 let reset = document.getElementById('reset');
 
-let focusInterval, focusTime, breakTime;
+let activeInterval, breakCompleted = false;
 
 function resetTimer() {
-    clearInterval(focusInterval);
-    countdown.innerText = Math.ceil(focusTime / 60) + ":00";
-    focusTime = parseInt(time.innerText) * 60;
+    clearInterval(activeInterval);
+    updateTimer(parseInt(time.innerText) * 60);
+    focusTime = 25 * 60;
     breakTime = 5 * 60;
     pause.id = 'pause';
     pause.innerHTML = `<i class="fa-solid fa-pause"></i>`;
@@ -362,13 +357,13 @@ function updateTimer(time) {
 
 function togglePause() {
     reset.classList.toggle('hide');
-    clearInterval(focusInterval);
+    clearInterval(activeInterval);
 
     if(pause.id === 'pause') {
         pause.id = 'play';
         pause.innerHTML = `<i class="fa-solid fa-play"></i>`;
     } else {
-        focusInterval = setInterval(() => {
+        activeInterval = setInterval(() => {
             focusTime--;
             updateTimer(focusTime);
         }, 1000)
@@ -395,9 +390,17 @@ focusSession.addEventListener('click', () => {
     reset.addEventListener('click', resetTimer);
     pause.addEventListener('click', togglePause);
 
-    focusInterval = setInterval(() => {
+    activeInterval = setInterval(() => {
         focusTime--;
         updateTimer(focusTime);
+
+        if(focusTime === 0) {
+            clearInterval(activeInterval);
+            updateTimer(parseInt(time.innerText) * 60);
+            focusTime = 25 * 60;
+            breakTime = 5 * 60;
+            toggleHide();
+        }
     }, 1000);
 })
 
@@ -466,5 +469,45 @@ pgMsg.addEventListener('click', () => {
 
 const confettiBtn = document.getElementById('confetti-btn');
 confettiBtn.addEventListener('click', () => {
-    console.log('clicked')
+    confettiBtn.classList.add('hide');
+
+    setTimeout(() => {
+        confettiBtn.classList.remove('hide');
+    }, 4000);
+
+    var count = 200;
+    var defaults = {
+    origin: { y: 0.7 }
+    };
+
+    function fire(particleRatio, opts) {
+    confetti({
+        ...defaults,
+        ...opts,
+        particleCount: Math.floor(count * particleRatio)
+    });
+    }
+
+    fire(0.25, {
+    spread: 26,
+    startVelocity: 55,
+    });
+    fire(0.2, {
+    spread: 60,
+    });
+    fire(0.35, {
+    spread: 100,
+    decay: 0.91,
+    scalar: 0.8
+    });
+    fire(0.1, {
+    spread: 120,
+    startVelocity: 25,
+    decay: 0.92,
+    scalar: 1.2
+    });
+    fire(0.1, {
+    spread: 120,
+    startVelocity: 45,
+    });
 })
