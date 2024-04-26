@@ -334,7 +334,7 @@ let countdown = document.getElementById('countdown');
 let pause = document.getElementById('pause');
 let reset = document.getElementById('reset');
 
-let activeInterval, breakCompleted = false;
+let activeInterval;
 
 function resetTimer() {
     clearInterval(activeInterval);
@@ -431,17 +431,40 @@ copyButton.addEventListener('click', copyPassword);
 
 function generatePassword() {
     let chars = '';
-    if (lowercaseCheckbox.checked) chars += lowercaseChars;
-    if (uppercaseCheckbox.checked) chars += uppercaseChars;
-    if (numbersCheckbox.checked) chars += numberChars;
-    if (symbolsCheckbox.checked) chars += symbolChars;
+    let selectedSets = [];
+
+    if (lowercaseCheckbox.checked) {
+        chars += lowercaseChars;
+        selectedSets.push(lowercaseChars);
+    }
+    if (uppercaseCheckbox.checked) {
+        chars += uppercaseChars;
+        selectedSets.push(uppercaseChars);
+    }
+    if (numbersCheckbox.checked) {
+        chars += numberChars;
+        selectedSets.push(numberChars);
+    }
+    if (symbolsCheckbox.checked) {
+        chars += symbolChars;
+        selectedSets.push(symbolChars);
+    }
 
     let password = '';
-    const length = parseInt(passLength.value);
+
+    for(const set of selectedSets) {
+        const randomChar = set.charAt(Math.floor(Math.random() * set.length));
+        password += randomChar;
+    }
+    
+    const length = parseInt(passLength.value) - selectedSets.length;
+
     for (let i = 0; i < length; i++) {
         const randomIndex = Math.floor(Math.random() * chars.length);
         password += chars[randomIndex];
     }
+
+    password = password.split('').sort(() => Math.random() - 0.5).join('');
 
     passwordDisplay.value = password;
 }
@@ -450,9 +473,9 @@ function copyPassword() {
     copyButton.innerHTML = '<i class="fa-solid fa-check"></i>';
     setTimeout(() => {
         copyButton.innerHTML = '<i class="fa-solid fa-copy"></i>';
-    }, 5000);
+    }, 2000);
     passwordDisplay.select();
-    document.execCommand('copy');
+    navigator.clipboard.writeText(passwordDisplay.value);
 }
 
 let pgMsg = document.getElementById('pg-msg');
