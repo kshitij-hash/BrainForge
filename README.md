@@ -1,4 +1,4 @@
-# Focus Tab Extension
+# Productivity Tab Extension
 
 It is a web-based productivity tool designed to help users stay focused and organized during work or study sessions. It replaces your **empty tab**, providing a productive environment right from the start.
 
