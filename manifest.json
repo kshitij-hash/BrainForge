@@ -4,9 +4,9 @@
     "description": "A new tab page that helps you stay focused and productive.",
     "version": "1.0",
     "icons": {
-        "16": "focus.png",
-        "48": "focus.png",
-        "128": "focus.png"
+        "16": "icon.png",
+        "48": "icon.png",
+        "128": "icon.png"
     },
     "chrome_url_overrides": {
         "newtab": "empty_ntp.html"
