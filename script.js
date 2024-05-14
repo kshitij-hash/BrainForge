@@ -201,9 +201,9 @@ function checkTimeToRemoveTodos() {
         todo.disabled = false;
         currentTodos = 0;
     }
+    checkAllTodos();
 }
 setInterval(checkTimeToRemoveTodos, 1000);
-
 
 if(getitem) {
     todoList = JSON.parse(getitem);
@@ -281,66 +281,70 @@ function handleCheckbox() {
     }
 }
 
-let arrowUp = document.getElementById('increase')
-let arrowDown = document.getElementById('decrease')
+function checkAllTodos() {
+    if(todoList.length === 0) {
+        confettiBtn.className = 'hide';
+    }
+    else if (todoList.every(todo => todo.completed)) {
+        confettiBtn.className = '';
+    } else {
+        confettiBtn.className = 'hide';
+    }
+}
+
 let time = document.getElementById('time')
-let breakMsg = document.getElementById('break-msg')
-
-function breakMessageUpdate(breaks) {
-    if(breaks === 0) {
-        breakMsg.innerText = `You'll have no breaks.`
-    } else if(breaks === 1) {
-        breakMsg.innerText = `You'll have ${breaks} break.`
-    } else {
-        breakMsg.innerText = `You'll have ${breaks} breaks.`
-    }
-}
-
-let breaks = 0;
-function breakCalculator(time) {
-    breaks = (time % 25) / 5;
-    breakMessageUpdate(breaks);
-}
-
-arrowUp.addEventListener('click', () => {
-    if(parseInt(time.innerText)=== 120) {
-        return
-    } 
-    
-    if(parseInt(time.innerText) === 25) {
-        time.innerText = parseInt(time.innerText) + 5;
-    } else {
-        time.innerText = parseInt(time.innerText) + 30;
-    }
-    breakCalculator(parseInt(time.innerText));
-    countdown.innerText = `${time.innerText}:00`
-})
-
-arrowDown.addEventListener('click', () => {
-    if(parseInt(time.innerText) === 25) {
-        return
-    }
-    if(parseInt(time.innerText) === 30) {
-        time.innerText = parseInt(time.innerText) - 5;
-    } else {
-        time.innerText = parseInt(time.innerText) - 30;
-    }
-    breakCalculator(parseInt(time.innerText))
-    countdown.innerText = `${time.innerText}:00`
-})
 
 let focusSession = document.getElementById('focus-session');
 let countdown = document.getElementById('countdown');
 let pause = document.getElementById('pause');
 let reset = document.getElementById('reset');
 
-let activeInterval;
+const focusBtn = document.getElementsByClassName('focus-btn')[0];
+const breakBtn = document.getElementsByClassName('break-btn')[0];
+
+let sessionState = 'focus';
+
+function updateLocalStorage() {
+    localStorage.setItem('pomodoroState', JSON.stringify({
+        sessionState: sessionState
+    }))
+}
+
+window.onload = () => {
+    let pomodoroState = JSON.parse(localStorage.getItem('pomodoroState'));
+    
+    if(pomodoroState.sessionState === 'break') {
+        breakBtn.id = 'active-btn';
+        focusBtn.id = '';
+        time.innerHTML = 5;
+        sessionState = 'break';
+    }
+}
+
+breakBtn.addEventListener('click', () => {
+    breakBtn.id = 'active-btn';
+    focusBtn.id = '';
+    time.innerHTML = 5;
+    sessionState = 'break';
+    updateLocalStorage();
+})
+
+focusBtn.addEventListener('click', () => {
+    breakBtn.id = '';
+    focusBtn.id = 'active-btn';
+    time.innerHTML = 25;
+    sessionState = 'focus';
+    updateLocalStorage();
+})
 
 function resetTimer() {
-    clearInterval(activeInterval);
-    updateTimer(parseInt(time.innerText) * 60);
-    focusTime = 25 * 60;
-    breakTime = 5 * 60;
+    clearInterval(focusInterval);
+    if(sessionState === 'focus') {
+        focusTime = 25 * 60;
+    } else {
+        focusTime = 5 * 60;
+    }
+    updateTimer(focusTime);
     pause.id = 'pause';
     pause.innerHTML = `<i class="fa-solid fa-pause"></i>`;
     toggleHide();
@@ -357,18 +361,32 @@ function updateTimer(time) {
 
 function togglePause() {
     reset.classList.toggle('hide');
-    clearInterval(activeInterval);
+    if(countdown.classList[0] === 'focus') {
+        clearInterval(focusInterval);
 
-    if(pause.id === 'pause') {
-        pause.id = 'play';
-        pause.innerHTML = `<i class="fa-solid fa-play"></i>`;
-    } else {
-        activeInterval = setInterval(() => {
-            focusTime--;
-            updateTimer(focusTime);
-        }, 1000)
-        pause.id = 'pause';
-        pause.innerHTML = `<i class="fa-solid fa-pause"></i>`;
+        if(pause.id === 'pause') {
+            pause.id = 'play';
+            pause.innerHTML = `<i class="fa-solid fa-play"></i>`;
+        } else {
+            focusInterval = setInterval(() => {
+                focusTime--;
+                updateTimer(focusTime);
+
+                if(focusTime === 0) {
+                    clearInterval(focusInterval);
+                    updateTimer(parseInt(time.innerText) * 60);
+                    if(sessionState === 'focus') {
+                        focusTime = 25 * 60;
+                    } else {
+                        focusTime = 5 * 60;
+                    }
+                    toggleHide();
+                    notificationSound.play();
+                }
+            }, 1000)
+            pause.id = 'pause';
+            pause.innerHTML = `<i class="fa-solid fa-pause"></i>`;
+        }
     }
 }
 
@@ -380,36 +398,48 @@ function toggleHide() {
     countdownSection.classList.toggle('hide');
 }
 
+let focusTime, focusInterval;
+const notificationSound = document.getElementById('notificationSound')
+
 focusSession.addEventListener('click', () => {
     reset.classList.add('hide');
     toggleHide();
 
-    focusTime = parseInt(time.innerText) * 60;
-    breakTime = 5 * 60;
+    if(sessionState === 'focus') {
+        focusTime = 25 * 60;
+    } else {
+        focusTime = 5 * 60;
+    }
+    updateTimer(focusTime);
 
     reset.addEventListener('click', resetTimer);
     pause.addEventListener('click', togglePause);
 
-    activeInterval = setInterval(() => {
+    focusInterval = setInterval(() => {
+        countdown.classList.add('focus');
         focusTime--;
         updateTimer(focusTime);
 
         if(focusTime === 0) {
-            clearInterval(activeInterval);
+            clearInterval(focusInterval);
             updateTimer(parseInt(time.innerText) * 60);
-            focusTime = 25 * 60;
-            breakTime = 5 * 60;
+            if(sessionState === 'focus') {
+                focusTime = 25 * 60;
+            } else {
+                focusTime = 5 * 60;
+            }
             toggleHide();
+            notificationSound.play();
         }
     }, 1000);
 })
 
 const confettiBtn = document.getElementById('confetti-btn');
 confettiBtn.addEventListener('click', () => {
-    confettiBtn.classList.add('hide');
+    confettiBtn.disabled = true;
 
     setTimeout(() => {
-        confettiBtn.classList.remove('hide');
+        confettiBtn.disabled = false;
     }, 4000);
 
     var count = 200;

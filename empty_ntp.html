@@ -26,17 +26,16 @@
                 </div>
             </div>
             <div class="time-section">
+                <div class="options">
+                    <button id="active-btn" class="focus-btn">Focus</button>
+                    <button class="break-btn">Break</b>
+                </div>
                 <div class="upper">
                     <div class="display">
                         <p id="time">25</p>
                         <p>mins</p>
                     </div>
-                    <div class="arrows">
-                        <i id="increase" class="fa-solid fa-angle-up"></i>
-                        <i id="decrease" class="fa-solid fa-angle-down"></i>
-                    </div>
                 </div>
-                <p id="break-msg">You'll have no breaks.</p>
                 <button id="focus-session"><i class="fa-solid fa-play"></i> Start Session</button>
             </div>
         </div>
@@ -57,7 +56,7 @@
     </div>
     <div class="center">
         <p id="question">Did I do enough today?</p>
-        <button id="confetti-btn">Yes</button>
+        <button class="hide" id="confetti-btn">Yes</button>
     </div>
     <div id="lines">
         <div id="date" onload="getDate()"></div>
@@ -77,6 +76,7 @@
             </a>
         </p>
     </div>
+    <audio id="notificationSound" src="beep_sound.mp3"></audio>
     <script src="script.js"></script>
     <script src="tsparticles.confetti.bundle.min.js"></script>
 </body>

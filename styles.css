@@ -150,27 +150,30 @@ body {
     font-size: 0.7rem;
 }
 
-.arrows {
-    display: flex;
-    flex-direction: column;
-    font-size: 1rem;
-}
-
-.arrows #increase {
-    margin-bottom: 5px;
-}
-
-#increase,
-#decrease {
-    cursor: pointer;
-}
-
-#break-msg {
+.focus-btn, 
+.break-btn {
+    border: none;
     margin: 10px;
-    font-size: 0.7rem;
+    padding: 6px;
+    background-color: transparent;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.break-btn:hover,
+.focus-btn:hover {
+    scale: 1.1;
+}
+
+#active-btn {
+    background-color: #111111;
+    color: beige;
 }
 
 #focus-session {
+    margin-top: 10px;
     border: none;
     padding: 8px 10px;
     border-radius: 5px;
