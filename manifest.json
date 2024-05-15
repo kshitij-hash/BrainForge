@@ -1,7 +1,7 @@
 {
     "manifest_version": 3,
-    "name": "Productivity Tab",
-    "description": "A new tab page that helps you stay focused and productive.",
+    "name": "BrainForge",
+    "description": "Stay focused, organized, and productive from the moment you open a new tab with BrainForge.",
     "version": "1.0",
     "icons": {
         "16": "icon.png",
