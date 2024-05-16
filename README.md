@@ -18,6 +18,23 @@ This project is integrated with **localStorage**, ensuring that users won't lose
 
 Additionally, the application automatically clears the task list at midnight as a new day starts. This ensures that users start each day with a fresh set of tasks, promoting ongoing productivity and goal-setting.
 
+## Promo Video
+https://github.com/kshitij-hash/BrainForge/assets/83551355/9bea844d-ee6e-459a-8a8e-278a7ce90d23
+
+
+## Installation Steps
+### Step 1
+![bf1](https://github.com/kshitij-hash/BrainForge/assets/83551355/76467261-dfab-4437-820d-a56221be9eff)
+### Step 2
+![bf2](https://github.com/kshitij-hash/BrainForge/assets/83551355/eda8b37b-0491-4e7e-bb5a-30195f41d648)
+### Step 3
+![bf3](https://github.com/kshitij-hash/BrainForge/assets/83551355/69226bb0-c6e0-437b-b84b-d8aaf64d946f)
+### Step 4
+![bf4](https://github.com/kshitij-hash/BrainForge/assets/83551355/f0e4c0ed-be34-417e-9708-1597378ef0a5)
+### You're ready to go
+![bf5](https://github.com/kshitij-hash/BrainForge/assets/83551355/9a143351-d2a2-48de-b8ce-ecd86cf9a5f8)
+
+
 ## Usage
 
 1. **Timer Controls**: Set the duration of your study session using the timer controls. Breaks are automatically provided during the session based on its length.
